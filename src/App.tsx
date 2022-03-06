@@ -10,18 +10,25 @@ import CreateArray from './utils/CreateArray';
 
 // Sorting Algorithm imports
 import SelectionSort from './algorithms/SelectionSort';
+import BubbleSort from './algorithms/BubbleSort';
 
 function App() {
-    const visWidth: string = "1000"; // visualizer width
-    const totalRectangleWidth = "25"; // total width is 25, 
+    const visWidth_str: string = "1000"; // visualizer width
+    const totalRectangleWidth_str: string = "25"; // total width is 25, // declaring as string because rect attributes take string arg
     // (rectangle size + rectangle outline size) where size of rectangle is 23px and size of rectangle outline is 2px
-    const numberOfRectangles: number = parseInt(visWidth) / parseInt(totalRectangleWidth);
+    const numberOfRectangles: number = parseInt(visWidth_str) / parseInt(totalRectangleWidth_str);
     const [Numbers, SetNumbers] = React.useState<Array<number>>(() => CreateArray(numberOfRectangles));
 
     // button press states
     const [isRunning, SetRun] = React.useState<boolean>(false);
     const [resetClicked, SetResetClicked] = React.useState<boolean>(false);
     const [pausedClicked, SetPause] = React.useState<boolean>(false);
+
+    // algorithm hook state
+    const [algorithmType, SetAlgorithmType] = React.useState<string>('selectionsort');
+
+    // delay time hook
+    const [DelayTime, SetDelayTime] = React.useState<number>(200); // 200 is the default delay time, add a slider that can change the slider time
 
     React.useEffect(() => {
         if (isRunning === true) return; // if the sorting algorithm is running, continue;
@@ -41,23 +48,27 @@ function App() {
     }, [pausedClicked]);
 
     async function Sort() {
-        // make sure to pass isRunning hook to allow sorting algorithm to terminate when paused
-        // call sorting algorithm
-        SetRun(true);
-        // SetNumbers([...Swap(Numbers, 0, 1)]); // using spread operator to update array state
+        if (isRunning === true) return; // do not run twice
+        SetRun(true); // set state to true for now
         var vRectangles: HTMLCollection = document.getElementById('Visualizer')!.children;
-        await SelectionSort(vRectangles, isRunning);
-        // console.log('End of run');
+        switch (algorithmType) {
+            case 'selectionsort':
+                await SelectionSort(vRectangles, isRunning, DelayTime);
+                break;
+            case 'bubblesort':
+                await BubbleSort(vRectangles, isRunning, DelayTime);
+                break;    
+        }
         SetRun(false);
     }
 
     return (
         <React.Fragment>
             <div className="VisualizerContainer">
-                <svg xmlns="http://www.w3.org/2000/svg" className="VisualizerSvg" id="Visualizer" width={visWidth} height="350">
+                <svg xmlns="http://www.w3.org/2000/svg" className="VisualizerSvg" id="Visualizer" width={visWidth_str} height="350">
                     {
                         Numbers.map((value: number, index: number) => {
-                            return <Rectangle x_coord={index * parseInt(totalRectangleWidth)} height={value} key={index} />
+                            return <Rectangle x_coord={index * parseInt(totalRectangleWidth_str)} height={value} key={index} />
                         })
                     }
                 </svg>
@@ -68,6 +79,10 @@ function App() {
                     : <button className="control-btn" id="new-btn" onClick={() => SetResetClicked(true)}>New Array</button>}
                 <button className="control-btn" id="sort-btn" onClick={() => Sort()}>Sort Array</button>
                 <button className="control-btn" id="pause-btn" onClick={() => SetPause(true)} hidden>Pause</button>
+                <select id="algorithms">
+                    <option value="selectionsort" onSelect={() => SetAlgorithmType('selectionsort')}>Selection Sort</option>
+                    <option value="bubblesort" onSelect={() => SetAlgorithmType('bubblesort')}>Bubble Sort</option>
+                </select>
             </div>
         </React.Fragment>
     );

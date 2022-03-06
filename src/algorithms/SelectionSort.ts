@@ -3,7 +3,7 @@ import Swap from "../utils/Swap";
 
 import { GetRectangleValue_Int } from '../utils/GetRectangleValue';
 
-async function SelectionSort(ar: HTMLCollection, run: boolean): Promise<void> {
+async function SelectionSort(ar: HTMLCollection, run: boolean, delay_ms: number): Promise<void> {
     let n: number = ar.length;
     for (let i = 0; i < n; i++) {
         let minIndex = i;
@@ -17,11 +17,10 @@ async function SelectionSort(ar: HTMLCollection, run: boolean): Promise<void> {
         await new Promise<void>((resolve) => {
             setTimeout(async () => {
                 if (minIndex !== i) {
-                    console.log('Swapped');
                     Swap(ar, i, minIndex);
                 }
                 resolve();
-            }, 200);
+            }, delay_ms);
         });
     }
     // end of function
