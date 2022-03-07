@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.css';
-import Swap from './utils/Swap';
 
 // Component imports
 import Rectangle from './components/Rectangle/Rectangle';
@@ -22,7 +21,7 @@ function App() {
     // button press states
     const [isRunning, SetRun] = React.useState<boolean>(false);
     const [resetClicked, SetResetClicked] = React.useState<boolean>(false);
-    const [pausedClicked, SetPause] = React.useState<boolean>(false);
+    // const [pausedClicked, SetPause] = React.useState<boolean>(false);
 
     // algorithm hook state
     const [algorithmType, SetAlgorithmType] = React.useState<string>('selectionsort');
@@ -38,14 +37,14 @@ function App() {
         } else return;
     }, [resetClicked]); // if new array button is pressed, regenerate a new array
 
-    React.useEffect(() => {
-        if (isRunning === true) {
-            SetRun(false);
-        }
-        if (pausedClicked === true) {
-            SetPause(false);
-        }
-    }, [pausedClicked]);
+    // React.useEffect(() => {
+    //     if (isRunning === true) {
+    //         SetRun(false);
+    //     }
+    //     if (pausedClicked === true) {
+    //         SetPause(false);
+    //     }
+    // }, [pausedClicked]);
 
     async function Sort() {
         if (isRunning === true) return; // do not run twice
@@ -78,7 +77,7 @@ function App() {
                     ? <button className="control-btn" id="new-btn" disabled>New Array</button>
                     : <button className="control-btn" id="new-btn" onClick={() => SetResetClicked(true)}>New Array</button>}
                 <button className="control-btn" id="sort-btn" onClick={() => Sort()}>Sort Array</button>
-                <button className="control-btn" id="pause-btn" onClick={() => SetPause(true)} hidden>Pause</button>
+                {/* <button className="control-btn" id="pause-btn" onClick={() => SetPause(true)} hidden>Pause</button> */}
                 <select id="algorithms">
                     <option value="selectionsort" onSelect={() => SetAlgorithmType('selectionsort')}>Selection Sort</option>
                     <option value="bubblesort" onSelect={() => SetAlgorithmType('bubblesort')}>Bubble Sort</option>
