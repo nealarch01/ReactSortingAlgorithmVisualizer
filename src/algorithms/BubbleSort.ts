@@ -8,6 +8,7 @@ async function BubbleSort(ar: HTMLCollection, run: boolean, delay_ms: number): P
                 await new Promise<void>((resolve) => {
                     setTimeout(() => {
                         Swap(ar, j, j - 1);
+                        resolve();
                     }, delay_ms);
                 });
             }

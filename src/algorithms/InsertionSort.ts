@@ -8,7 +8,12 @@ async function InsertionSort(ar: HTMLCollection, run: boolean, delay_ms: number)
     for (i = 1; i < n; i++) {
         j = i;
         while (j > 0 && (GetRectangleValue_Int(ar[j - 1]) > GetRectangleValue_Int(ar[j]))) {
-            Swap(ar, j - 1, j);
+            await new Promise<void>((resolve) => {
+                setTimeout(() => {
+                    Swap(ar, j - 1, j);
+                    resolve();
+                }, delay_ms);
+            })
             j--;
         }
     }
