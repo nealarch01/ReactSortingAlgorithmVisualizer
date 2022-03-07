@@ -10,6 +10,7 @@ import CreateArray from './utils/CreateArray';
 // Sorting Algorithm imports
 import SelectionSort from './algorithms/SelectionSort';
 import BubbleSort from './algorithms/BubbleSort';
+import InsertionSort from './algorithms/InsertionSort';
 
 function App() {
     const visWidth_str: string = "1000"; // visualizer width
@@ -56,7 +57,12 @@ function App() {
                 break;
             case 'bubblesort':
                 await BubbleSort(vRectangles, isRunning, DelayTime);
-                break;    
+                break;
+            case 'insertionsort':
+                await InsertionSort(vRectangles, isRunning, DelayTime);
+                break;
+            default:
+                break; // do nothing if somehow invalid input is read
         }
         SetRun(false);
     }
@@ -81,6 +87,7 @@ function App() {
                 <select id="algorithms">
                     <option value="selectionsort" onSelect={() => SetAlgorithmType('selectionsort')}>Selection Sort</option>
                     <option value="bubblesort" onSelect={() => SetAlgorithmType('bubblesort')}>Bubble Sort</option>
+                    <option value="insertionsort" onSelect={() => SetAlgorithmType('insertionsort')}>Insertion Sort</option>
                 </select>
             </div>
         </React.Fragment>
