@@ -2,6 +2,7 @@
 import Swap from "../utils/Swap";
 
 import { GetRectangleValue_Int } from '../utils/GetRectangleValue';
+import MarkPointers from "../utils/MarkPointers";
 
 async function SelectionSort(ar: HTMLCollection, run: boolean, delay_ms: number): Promise<void> {
     let n: number = ar.length;
@@ -14,14 +15,9 @@ async function SelectionSort(ar: HTMLCollection, run: boolean, delay_ms: number)
                 minIndex = j;
             }
         }
-        await new Promise<void>((resolve) => {
-            setTimeout(async () => {
-                if (minIndex !== i) {
-                    Swap(ar, i, minIndex);
-                }
-                resolve();
-            }, delay_ms);
-        });
+        if (minIndex !== i) {
+            await Swap(ar, i, minIndex, delay_ms);
+        }
     }
     // end of function
 }

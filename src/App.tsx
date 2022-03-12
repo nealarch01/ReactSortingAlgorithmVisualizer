@@ -28,7 +28,7 @@ function App() {
     const [algorithmType, SetAlgorithmType] = React.useState<string>('selectionsort');
 
     // delay time hook
-    const [DelayTime, SetDelayTime] = React.useState<number>(200); // 200 is the default delay time, add a slider that can change the slider time
+    const [DelayTime, SetDelayTime] = React.useState<number>(10); // 200 is the default delay time, add a slider that can change the slider time
 
     React.useEffect(() => {
         if (isRunning === true) return; // if the sorting algorithm is running, continue;
@@ -48,6 +48,7 @@ function App() {
     // }, [pausedClicked]);
 
     async function Sort() {
+        console.log('Algorithm type: ', algorithmType);
         if (isRunning === true) return; // do not run twice
         SetRun(true); // set state to true for now
         var vRectangles: HTMLCollection = document.getElementById('Visualizer')!.children;
@@ -73,7 +74,7 @@ function App() {
                 <svg xmlns="http://www.w3.org/2000/svg" className="VisualizerSvg" id="Visualizer" width={visWidth_str} height="350">
                     {
                         Numbers.map((value: number, index: number) => {
-                            return <Rectangle x_coord={index * parseInt(totalRectangleWidth_str)} height={value} key={index} />
+                            return <Rectangle x_coord={index * parseInt(totalRectangleWidth_str)} height={value} id_value={index} key={index} />
                         })
                     }
                 </svg>
@@ -84,10 +85,15 @@ function App() {
                     : <button className="control-btn" id="new-btn" onClick={() => SetResetClicked(true)}>New Array</button>}
                 <button className="control-btn" id="sort-btn" onClick={() => Sort()}>Sort Array</button>
                 {/* <button className="control-btn" id="pause-btn" onClick={() => SetPause(true)} hidden>Pause</button> */}
-                <select id="algorithms">
-                    <option value="selectionsort" onSelect={() => SetAlgorithmType('selectionsort')}>Selection Sort</option>
-                    <option value="bubblesort" onSelect={() => SetAlgorithmType('bubblesort')}>Bubble Sort</option>
-                    <option value="insertionsort" onSelect={() => SetAlgorithmType('insertionsort')}>Insertion Sort</option>
+                <select id="algorithms" onChange={(event): void => {
+                    let val = event.target.value!;
+                    SetAlgorithmType(val);
+                    // SetAlgorithmType(val);
+                    return;
+                }}>
+                    <option value="selectionsort">Selection Sort</option>
+                    <option value="bubblesort">Bubble Sort</option>
+                    <option value="insertionsort">Insertion Sort</option>
                 </select>
             </div>
         </React.Fragment>
