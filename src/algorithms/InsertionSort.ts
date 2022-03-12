@@ -1,7 +1,5 @@
 import Swap from '../utils/Swap';
 import { GetRectangleValue_Int } from '../utils/GetRectangleValue';
-import MarkPointers from '../utils/MarkPointers';
-import UnmarkPointers from '../utils/UnmarkPointers';
 
 async function InsertionSort(ar: HTMLCollection, run: boolean, delay_ms: number): Promise<void> {
     let n = ar.length;

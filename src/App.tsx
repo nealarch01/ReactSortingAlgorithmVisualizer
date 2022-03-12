@@ -85,7 +85,7 @@ function App() {
                     : <button className="control-btn" id="new-btn" onClick={() => SetResetClicked(true)}>New Array</button>}
                 <button className="control-btn" id="sort-btn" onClick={() => Sort()}>Sort Array</button>
                 {/* <button className="control-btn" id="pause-btn" onClick={() => SetPause(true)} hidden>Pause</button> */}
-                <select id="algorithms" onChange={(event): void => {
+                <select id="algorithms" className="algorithm-selectbox" onChange={(event): void => {
                     let val = event.target.value!;
                     SetAlgorithmType(val);
                     // SetAlgorithmType(val);
@@ -95,6 +95,18 @@ function App() {
                     <option value="bubblesort">Bubble Sort</option>
                     <option value="insertionsort">Insertion Sort</option>
                 </select>
+                <div className="SliderContainer">
+                    {
+                        (isRunning === true)
+                            ? <input type="range" min="1" max="100" value={DelayTime} id="delay-slider"
+                                onChange={(event) => SetDelayTime(parseInt(event.target.value))}
+                                disabled
+                            />
+                            : <input type="range" min="1" max="100" value={DelayTime} id="delay-slider"
+                                onChange={(event) => SetDelayTime(parseInt(event.target.value))}
+                            />
+                    }
+                </div>
             </div>
         </React.Fragment>
     );

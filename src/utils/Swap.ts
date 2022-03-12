@@ -1,6 +1,3 @@
-import MarkPointers from "./MarkPointers";
-import UnmarkPpinters from "./MarkPointers";
-
 async function Swap(rectangles: HTMLCollection, index1: number, index2: number, delay_ms: number): Promise<void> {
     await new Promise<void>((resolve) => {
         setTimeout(async () => {
