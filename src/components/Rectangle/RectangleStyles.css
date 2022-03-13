@@ -3,3 +3,9 @@
     stroke: black;
     stroke-width: 2px;
 }
+
+.VRect-Marked {
+    fill: white;
+    stroke: black;
+    stroke-width: 2px;
+}

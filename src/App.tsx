@@ -11,6 +11,7 @@ import CreateArray from './utils/CreateArray';
 import SelectionSort from './algorithms/SelectionSort';
 import BubbleSort from './algorithms/BubbleSort';
 import InsertionSort from './algorithms/InsertionSort';
+import QuickSort from './algorithms/QuickSort';
 
 function App() {
     const visWidth_str: string = "1000"; // visualizer width
@@ -48,7 +49,6 @@ function App() {
     // }, [pausedClicked]);
 
     async function Sort() {
-        console.log('Algorithm type: ', algorithmType);
         if (isRunning === true) return; // do not run twice
         SetRun(true); // set state to true for now
         var vRectangles: HTMLCollection = document.getElementById('Visualizer')!.children;
@@ -62,6 +62,9 @@ function App() {
             case 'insertionsort':
                 await InsertionSort(vRectangles, isRunning, DelayTime);
                 break;
+            case 'quicksort':
+                await QuickSort(vRectangles, isRunning, DelayTime);
+                break;             
             default:
                 break; // do nothing if somehow invalid input is read
         }
@@ -94,6 +97,7 @@ function App() {
                     <option value="selectionsort">Selection Sort</option>
                     <option value="bubblesort">Bubble Sort</option>
                     <option value="insertionsort">Insertion Sort</option>
+                    <option value="quicksort">Quick Sort</option>
                 </select>
                 <div className="SliderContainer">
                     {
