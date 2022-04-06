@@ -23,7 +23,6 @@ function App() {
     // button press states
     const [isRunning, SetRun] = React.useState<boolean>(false);
     const [resetClicked, SetResetClicked] = React.useState<boolean>(false);
-    // const [pausedClicked, SetPause] = React.useState<boolean>(false);
 
     // algorithm hook state
     const [algorithmType, SetAlgorithmType] = React.useState<string>('selectionsort');
@@ -38,15 +37,6 @@ function App() {
             SetResetClicked(false);
         } else return;
     }, [resetClicked]); // if new array button is pressed, regenerate a new array
-
-    // React.useEffect(() => {
-    //     if (isRunning === true) {
-    //         SetRun(false);
-    //     }
-    //     if (pausedClicked === true) {
-    //         SetPause(false);
-    //     }
-    // }, [pausedClicked]);
 
     async function Sort() {
         if (isRunning === true) return; // do not run twice
@@ -87,7 +77,6 @@ function App() {
                     ? <button className="control-btn" id="new-btn" disabled>New Array</button>
                     : <button className="control-btn" id="new-btn" onClick={() => SetResetClicked(true)}>New Array</button>}
                 <button className="control-btn" id="sort-btn" onClick={() => Sort()}>Sort Array</button>
-                {/* <button className="control-btn" id="pause-btn" onClick={() => SetPause(true)} hidden>Pause</button> */}
                 <select id="algorithms" className="algorithm-selectbox" onChange={(event): void => {
                     let val = event.target.value!;
                     SetAlgorithmType(val);
