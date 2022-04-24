@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/ReactSortingVisualizer/static/css/main.76d8164f.css",
-    "main.js": "/ReactSortingVisualizer/static/js/main.276a3a6a.js",
-    "static/js/787.5b6bc184.chunk.js": "/ReactSortingVisualizer/static/js/787.5b6bc184.chunk.js",
-    "index.html": "/ReactSortingVisualizer/index.html",
-    "main.76d8164f.css.map": "/ReactSortingVisualizer/static/css/main.76d8164f.css.map",
-    "main.276a3a6a.js.map": "/ReactSortingVisualizer/static/js/main.276a3a6a.js.map",
-    "787.5b6bc184.chunk.js.map": "/ReactSortingVisualizer/static/js/787.5b6bc184.chunk.js.map"
+    "main.css": "/ReactSortingAlgorithmVisualizer/static/css/main.76d8164f.css",
+    "main.js": "/ReactSortingAlgorithmVisualizer/static/js/main.a330a40a.js",
+    "static/js/787.5b6bc184.chunk.js": "/ReactSortingAlgorithmVisualizer/static/js/787.5b6bc184.chunk.js",
+    "index.html": "/ReactSortingAlgorithmVisualizer/index.html",
+    "main.76d8164f.css.map": "/ReactSortingAlgorithmVisualizer/static/css/main.76d8164f.css.map",
+    "main.a330a40a.js.map": "/ReactSortingAlgorithmVisualizer/static/js/main.a330a40a.js.map",
+    "787.5b6bc184.chunk.js.map": "/ReactSortingAlgorithmVisualizer/static/js/787.5b6bc184.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.76d8164f.css",
-    "static/js/main.276a3a6a.js"
+    "static/js/main.a330a40a.js"
   ]
 }
